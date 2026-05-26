@@ -1,12 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
+    <!-- Meta -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wonderlust</title>
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="TravelScape helps you discover breathtaking trekking destinations, mountain adventures, hidden valleys, and unforgettable travel experiences across India."
+    />
+
+    <!-- Title -->
+    <title>TravelScape</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn-icons-png.flaticon.com/512/201/201623.png"
+    />
 
     <!-- Bootstrap CSS -->
     <link
@@ -25,25 +40,37 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- Google Fonts -->
+    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link href="/css/rating.css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Rating CSS -->
+    <link rel="stylesheet" href="/css/rating.css" />
   </head>
-  <body>
-    <!-- Navbar include -->
+
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Navbar -->
     <%- include("../includes/navbar.ejs") %>
 
-    <!-- Page content -->
-    <main class="flex-grow-1 container mt-4">
-      <%- include("../includes/flash.ejs") %> <%- body %>
+    <!-- Main Content -->
+    <main class="container flex-grow-1 mt-4">
+      <!-- Flash Messages -->
+      <%- include("../includes/flash.ejs") %>
+
+      <!-- Dynamic Page Content -->
+      <%- body %>
     </main>
 
-    <!-- Footer include -->
+    <!-- Footer -->
     <%- include("../includes/footer.ejs") %>
 
     <!-- Bootstrap JS -->

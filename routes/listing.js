@@ -1,44 +1,98 @@
+// Express router
 const express = require("express");
+
 const router = express.Router();
-const wrapAsync = require("../utils/wrapAsync.js");
-const Listing = require("../models/listing.js");
-const { isLoggedIn, isOwner, validatelisting } = require("../middleware.js");
-const listingController = require("../controllers/listings.js");
+
+// Listing controller
+const listingController = require("../controllers/listings");
+
+// Listing model
+const Listing = require("../models/listing");
+
+// Middleware
+const { isLoggedIn, isOwner, validateListing } = require("../middleware");
+
+// Multer + Cloudinary
 const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
+
+const { storage } = require("../cloudConfig");
+
 const upload = multer({ storage });
 
-router
-  .route("/")
-  .get(wrapAsync(listingController.index))
-  .post(
-    isLoggedIn,
-    validatelisting,
-    upload.single("listing[image]"),
-    wrapAsync(listingController.createListing)
-  );
+/* ======================================================
+   SEARCH + FILTER ROUTE
+====================================================== */
+router.get("/", async (req, res) => {
+  // Get search query
+  const { search, category } = req.query;
 
-// New route
+  // Empty filter object
+  let filter = {};
+
+  /* -------------------------------------------
+       Search by destination title
+    -------------------------------------------- */
+  if (search) {
+    filter.title = {
+      $regex: search,
+      $options: "i",
+    };
+  }
+
+  /* -------------------------------------------
+       Filter by category
+    -------------------------------------------- */
+  if (category) {
+    filter.category = category;
+  }
+
+  // Fetch filtered destinations
+  const allListings = await Listing.find(filter);
+
+  // Render page
+  res.render("listings/index.ejs", {
+    allListings,
+  });
+});
+
+/* ======================================================
+   CREATE DESTINATION ROUTES
+====================================================== */
+
+// New form
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
-router
-  .route("/:id")
-  .get(wrapAsync(listingController.showListing))
-  .put(
-    isLoggedIn,
-    isOwner,
-    upload.single("listing[image]"),
-    validatelisting,
-    wrapAsync(listingController.updateListing)
-  )
-  .delete(isLoggedIn, isOwner, wrapAsync(listingController.deleteListing));
-
-// Edit route
-router.get(
-  "/:id/edit",
+// Create destination
+router.post(
+  "/",
   isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.renderEditForm)
+  upload.single("image"),
+  validateListing,
+  listingController.createListing,
 );
 
+/* ======================================================
+   SINGLE DESTINATION ROUTES
+====================================================== */
+
+// Show destination
+router.get("/:id", listingController.showListing);
+
+// Edit form
+router.get("/:id/edit", isLoggedIn, isOwner, listingController.renderEditForm);
+
+// Update destination
+router.put(
+  "/:id",
+  isLoggedIn,
+  isOwner,
+  upload.single("image"),
+  validateListing,
+  listingController.updateListing,
+);
+
+// Delete destination
+router.delete("/:id", isLoggedIn, isOwner, listingController.destroyListing);
+
+// Export router
 module.exports = router;

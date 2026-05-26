@@ -1,27 +1,83 @@
-<% if(success && success.length) { %>
-<div
-  class="alert alert-success alert-dismissible fade show col-6 offset-3"
-  role="alert"
->
-  <%= success %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="close"
-  ></button>
-</div>
-<% } %> <% if(error && error.length) { %>
-<div
-  class="alert alert-danger alert-dismissible fade show col-6 offset-3"
-  role="alert"
->
-  <%= error %>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="close"
-  ></button>
-</div>
+<!-- Success Flash Message -->
+<% if(success && success.length > 0){ %>
+
+    <div
+        class="alert alert-success alert-dismissible fade show shadow-sm rounded-4"
+        role="alert">
+
+        <div class="d-flex align-items-center">
+
+            <!-- Success Icon -->
+            <i class="fa-solid fa-circle-check me-2"></i>
+
+            <!-- Message -->
+            <span>
+
+                <%= success %>
+
+            </span>
+
+        </div>
+
+
+
+
+
+        <!-- Close Button -->
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close">
+
+        </button>
+
+    </div>
+
+<% } %>
+
+
+
+
+
+
+
+
+
+<!-- Error Flash Message -->
+<% if(error && error.length > 0){ %>
+
+    <div
+        class="alert alert-danger alert-dismissible fade show shadow-sm rounded-4"
+        role="alert">
+
+        <div class="d-flex align-items-center">
+
+            <!-- Error Icon -->
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+
+            <!-- Message -->
+            <span>
+
+                <%= error %>
+
+            </span>
+
+        </div>
+
+
+
+
+
+        <!-- Close Button -->
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close">
+
+        </button>
+
+    </div>
+
 <% } %>

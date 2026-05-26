@@ -1,66 +1,261 @@
-<style>
-  .search-btn {
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
-  }
-  .search-btn:hover {
-    background-color: #fe424d;
-    color: #fff;
-  }
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
 
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 0.9rem;
-  }
-</style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"
-      ><i class="fa-regular fa-compass"></i
-    ></a>
+    <div class="container">
+
+        <!-- Brand Logo -->
+        <a class="navbar-brand fw-bold" href="/listings">
+
+            <i class="fa-solid fa-mountain-sun me-2"></i>
+
+            TravelScape
+
+        </a>
+
+
+
+
+
+        <!-- Mobile Toggle -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+
+
+
+
+
+        <!-- Navbar Content -->
+        <div
+            class="collapse navbar-collapse"
+            id="navbarNav">
+
+
+
+
+
+            <!-- Left Navigation -->
+            <ul class="navbar-nav me-auto">
+
+                <!-- Explore -->
+                <li class="nav-item">
+
+                    <a
+                        class="nav-link fw-semibold"
+                        href="/listings">
+
+                        Explore
+
+                    </a>
+
+                </li>
+
+
+
+
+
+                <!-- Add Destination -->
+                <% if(currUser){ %>
+
+                    <li class="nav-item">
+
+                        <a
+                            class="nav-link fw-semibold"
+                            href="/listings/new">
+
+                            Add Destination
+
+                        </a>
+
+                    </li>
+
+                <% } %>
+
+            </ul>
+
+         <!-- Search + Filter Form -->
+<form
+    class="d-flex me-4"
+    role="search"
+    method="GET"
+    action="/listings">
+
+
+
+
+    <!-- Search Input -->
+    <input
+        class="form-control me-2"
+        type="search"
+        name="search"
+        placeholder="Search destinations">
+
+
+
+
+    <!-- Category Dropdown -->
+    <select
+        name="category"
+        class="form-select me-2">
+
+        <option value="">
+
+            All
+
+        </option>
+
+        <option value="Trekking">
+
+            Trekking
+
+        </option>
+
+        <option value="Adventure">
+
+            Adventure
+
+        </option>
+
+        <option value="Spiritual">
+
+            Spiritual
+
+        </option>
+
+        <option value="Nature">
+
+            Nature
+
+        </option>
+
+        <option value="Snow">
+
+            Snow
+
+        </option>
+
+        <option value="Camping">
+
+            Camping
+
+        </option>
+
+        <option value="Road Trip">
+
+            Road Trip
+
+        </option>
+
+    </select>
+
+
+
+
+
+    <!-- Search Button -->
     <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
-    >
-      <span class="navbar-toggler-icon"></span>
+        class="btn btn-dark"
+        type="submit">
+
+        Search
+
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings"><b>Explore</b></a>
-      </div>
 
-      <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2 search-inp"
-            type="search"
-            placeholder="Search destination"
-          />
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
-          </button>
-        </form>
-      </div>
+</form>
 
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">List a Hidden Gem</a>
-        <% if (typeof currUser === "undefined" || !currUser) { %>
-        <a class="nav-link" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } else { %>
-        <a class="nav-link" href="/logout"><b>Log out</b></a>
-        <span class="nav-link"><b>Hi, <%= currUser.username %></b></span>
-        <% } %>
-      </div>
+
+
+
+
+
+            <!-- Right Navigation -->
+            <ul class="navbar-nav ms-auto align-items-center">
+
+
+
+
+                <% if(!currUser){ %>
+
+                    <!-- Login -->
+                    <li class="nav-item me-2">
+
+                        <a
+                            class="nav-link fw-semibold"
+                            href="/login">
+
+                            Login
+
+                        </a>
+
+                    </li>
+
+
+
+
+
+                    <!-- Signup -->
+                    <li class="nav-item">
+
+                        <a
+                            class="btn btn-dark px-3"
+                            href="/signup">
+
+                            Sign Up
+
+                        </a>
+
+                    </li>
+
+
+
+
+
+
+                <% } else { %>
+
+                    <!-- Username -->
+                    <li class="nav-item me-3">
+
+                        <span class="nav-link fw-semibold">
+
+                            Welcome,
+                            <%= currUser.username %>
+
+                        </span>
+
+                    </li>
+
+
+
+
+
+
+                    <!-- Logout -->
+                    <li class="nav-item">
+
+                        <a
+                            class="btn btn-outline-dark"
+                            href="/logout">
+
+                            Logout
+
+                        </a>
+
+                    </li>
+
+                <% } %>
+
+            </ul>
+
+        </div>
+
     </div>
-  </div>
+
 </nav>

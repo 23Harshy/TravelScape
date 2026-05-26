@@ -1,84 +1,465 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3>Edit Listing</h3>
-    <form
-      method="POST"
-      action="/listings/<%= listing._id %>?_method=PUT"
-      class="needs-validation"
-      novalidate
-      enctype="multipart/form-data"
-    >
-      <div class="mb-3">
-        <label class="form-label">Title</label>
-        <input
-          name="listing[title]"
-          type="text"
-          class="form-control"
-          value="<%= listing.title %>"
-          required
-        />
-        <div class="valid-feedback">Title looks good!</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea name="listing[description]" class="form-control" required>
-<%= listing.description %></textarea
-        >
-        <div class="invalid-feedback">please enter short description!</div>
-      </div>
 
-      <div class="mb-3">
-        Original Listing Image <br />
-        <img src="<%= originalImageUrl %>" />
-      </div>
+<div class="row mt-4 mb-5">
 
-      <div class="mb-3">
-        <label class="form-label">Upload New Image</label>
-        <input name="listing[image][url]" type="file" class="form-control" />
-      </div>
+    <div class="col-lg-8 offset-lg-2">
 
-      <div class="row">
-        <div class="mb-3 col-md-4">
-          <label class="form-label">Price</label>
-          <input
-            name="listing[price]"
-            type="number"
-            class="form-control"
-            value="<%= listing.price %>"
-            required
-          />
-          <div class="invalid-feedback">please enter valid price!</div>
+        <!-- Page Heading -->
+        <div class="mb-4 text-center">
+
+            <h1 class="fw-bold">
+
+                Edit Travel Destination
+
+            </h1>
+
+            <p class="text-muted">
+
+                Update destination details, activities,
+                trekking information, and travel guidance.
+
+            </p>
+
         </div>
-        <div class="mb-3 col-md-8">
-          <label class="form-label">Country</label>
-          <input
-            name="listing[country]"
-            type="text"
-            class="form-control"
-            value="<%= listing.country %>"
-            required
-          />
-          <div class="invalid-feedback">country name should be valid!</div>
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Location</label>
-        <input
-          name="listing[location]"
-          type="text"
-          class="form-control"
-          value="<%= listing.location %>"
-          required
-        />
-        <div class="invalid-feedback">location should be valid!</div>
-      </div>
-      <button type="submit" class="btn btn-dark edit-btn mt-3">
-        Update Listing
-      </button>
-    </form>
-  </div>
+
+
+
+
+
+        <!-- Edit Form -->
+        <form
+            method="POST"
+            action="/listings/<%= listing._id %>?_method=PUT"
+            enctype="multipart/form-data"
+            class="needs-validation"
+            novalidate>
+
+
+
+
+
+            <!-- Destination Title -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Destination Title
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[title]"
+                    value="<%= listing.title %>"
+                    class="form-control"
+                    required>
+
+                <div class="invalid-feedback">
+
+                    Please enter destination title.
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <!-- Description -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Description
+
+                </label>
+
+                <textarea
+                    name="listing[description]"
+                    rows="5"
+                    class="form-control"
+                    required><%= listing.description %></textarea>
+
+                <div class="invalid-feedback">
+
+                    Please provide description.
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Current Image -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Current Destination Image
+
+                </label>
+
+                <br>
+
+                <img
+                    src="<%= originalImageUrl %>"
+                    class="img-fluid rounded shadow-sm"
+                    style="height: 250px; object-fit: cover;">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Upload New Image -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Upload New Image
+
+                </label>
+
+                <input
+                    type="file"
+                    name="image"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- State -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    State
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[state]"
+                    value="<%= listing.state %>"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Region -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Region / District
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[region]"
+                    value="<%= listing.region %>"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Destination Category -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Destination Category
+
+                </label>
+
+                <select
+                    name="listing[category]"
+                    class="form-select">
+
+                    <option
+                        value="Trekking"
+                        <%= listing.category === "Trekking" ? "selected" : "" %>>
+
+                        Trekking
+
+                    </option>
+
+                    <option
+                        value="Adventure"
+                        <%= listing.category === "Adventure" ? "selected" : "" %>>
+
+                        Adventure
+
+                    </option>
+
+                    <option
+                        value="Spiritual"
+                        <%= listing.category === "Spiritual" ? "selected" : "" %>>
+
+                        Spiritual
+
+                    </option>
+
+                    <option
+                        value="Nature"
+                        <%= listing.category === "Nature" ? "selected" : "" %>>
+
+                        Nature
+
+                    </option>
+
+                    <option
+                        value="Snow"
+                        <%= listing.category === "Snow" ? "selected" : "" %>>
+
+                        Snow
+
+                    </option>
+
+                    <option
+                        value="Camping"
+                        <%= listing.category === "Camping" ? "selected" : "" %>>
+
+                        Camping
+
+                    </option>
+
+                    <option
+                        value="Road Trip"
+                        <%= listing.category === "Road Trip" ? "selected" : "" %>>
+
+                        Road Trip
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Best Season -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Best Time To Visit
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[bestSeason]"
+                    value="<%= listing.bestSeason %>"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Trek Difficulty -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Trek Difficulty
+
+                </label>
+
+                <select
+                    name="listing[trekDifficulty]"
+                    class="form-select">
+
+                    <option
+                        value="Easy"
+                        <%= listing.trekDifficulty === "Easy" ? "selected" : "" %>>
+
+                        Easy
+
+                    </option>
+
+                    <option
+                        value="Moderate"
+                        <%= listing.trekDifficulty === "Moderate" ? "selected" : "" %>>
+
+                        Moderate
+
+                    </option>
+
+                    <option
+                        value="Hard"
+                        <%= listing.trekDifficulty === "Hard" ? "selected" : "" %>>
+
+                        Hard
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Estimated Budget -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Estimated Travel Budget (₹)
+
+                </label>
+
+                <input
+                    type="number"
+                    name="listing[estimatedCost]"
+                    value="<%= listing.estimatedCost %>"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Altitude -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Altitude
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[altitude]"
+                    value="<%= listing.altitude %>"
+                    class="form-control">
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Activities -->
+            <div class="mb-3">
+
+                <label class="form-label fw-semibold">
+
+                    Activities
+
+                </label>
+
+                <input
+                    type="text"
+                    name="listing[activities]"
+                    value="<%= listing.activities.join(', ') %>"
+                    class="form-control">
+
+                <small class="text-muted">
+
+                    Separate activities using commas.
+
+                </small>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- How To Reach -->
+            <div class="mb-4">
+
+                <label class="form-label fw-semibold">
+
+                    How To Reach
+
+                </label>
+
+                <textarea
+                    name="listing[howToReach]"
+                    rows="4"
+                    class="form-control"><%= listing.howToReach %></textarea>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!-- Submit Button -->
+            <div class="text-center">
+
+                <button class="btn btn-dark px-4 py-2">
+
+                    Update Destination
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
-<script>
-  src = "/js/script.js";
-</script>

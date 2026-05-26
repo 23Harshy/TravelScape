@@ -2,7 +2,7 @@
   "engines": {
     "node": "v22.14.0"
   },
-  "name": "wonder_lust",
+  "name": "travelscape",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
     "ejs-mate": "^4.0.0",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "helmet": "^8.2.0",
     "joi": "^18.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^8.18.0",

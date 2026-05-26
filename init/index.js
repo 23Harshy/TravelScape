@@ -1,30 +1,64 @@
+require("dotenv").config();
+// Import mongoose
 const mongoose = require("mongoose");
-const initdata = require("./data.js");
-const listing = require("../models/listing.js");
 
-const mongo_url = "mongodb://127.0.0.1:27017/wonderlust";
+// Import sample travel destination data
+const initData = require("./data");
 
-// define main function to connect
-async function main() {
-  await mongoose.connect(mongo_url);
+// Import Listing model
+const Listing = require("../models/listing");
+
+// MongoDB connection URL
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
+const MONGO_URL =
+  process.env.ATLAS_DB_URL || "mongodb://127.0.0.1:27017/wanderlust";
+
+/* ======================================================
+   CONNECT TO DATABASE
+====================================================== */
 main()
   .then(() => {
-    console.log("Connected to DB");
+    console.log("MongoDB connected successfully");
   })
+
   .catch((err) => {
     console.log(err);
   });
 
+// Database connection function
+async function main() {
+  await mongoose.connect(MONGO_URL);
+}
+
+/* ======================================================
+   INITIALIZE DATABASE
+====================================================== */
 const initDB = async () => {
-  await listing.deleteMany({});
-  initdata.data = initdata.data.map((obj) => ({
+  // Delete old listings
+  await Listing.deleteMany({});
+
+  console.log("Old destination data deleted");
+
+  /* -------------------------------------------
+       Add owner ID to all destinations
+
+       Replace this owner ID with your own
+       MongoDB user ID if needed
+    -------------------------------------------- */
+  initData.data = initData.data.map((obj) => ({
     ...obj,
+
     owner: "68dd0d2527d9d6e25e7ea3cf",
   }));
-  await listing.insertMany(initdata.data);
-  console.log("data was initialized");
+
+  // Insert new travel destinations
+  await Listing.insertMany(initData.data);
+
+  console.log("Travel destination data initialized");
 };
 
+// Run initialization
 initDB();

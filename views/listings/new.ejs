@@ -1,81 +1,193 @@
 <% layout("/layouts/boilerplate") %>
-<div class="row mt-3">
-  <div class="col-8 offset-2">
-    <h3>Create New Listing</h3>
+
+<div class="row mt-4 mb-5">
+  <div class="col-lg-8 offset-lg-2">
+    <!-- Page Heading -->
+    <div class="mb-4 text-center">
+      <h1 class="fw-bold">Add New Travel Destination</h1>
+
+      <p class="text-muted">
+        Share beautiful destinations, trekking spots, hidden valleys, and
+        unforgettable travel experiences.
+      </p>
+    </div>
+
+    <!-- Destination Form -->
     <form
       method="POST"
       action="/listings"
+      enctype="multipart/form-data"
       class="needs-validation"
       novalidate
-      enctype="multipart/form-data"
     >
+      <!-- Destination Title -->
       <div class="mb-3">
-        <label class="form-label">Title</label>
+        <label class="form-label fw-semibold"> Destination Title </label>
+
         <input
-          name="listing[title]"
           type="text"
+          name="listing[title]"
           class="form-control"
-          placeholder="Enter title"
+          placeholder="Example: Tungnath Trek"
           required
         />
-        <div class="valid-feedback">Title looks good!</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea name="listing[description]" class="form-control" required>
-        </textarea>
-        <div class="invalid-feedback">please enter short description!</div>
+
+        <div class="invalid-feedback">Please enter destination title.</div>
       </div>
 
+      <!-- Description -->
       <div class="mb-3">
-        <label class="form-label">Upload Image </label>
-        <input
-          name="listing[image]"
-          type="file"
+        <label class="form-label fw-semibold"> Description </label>
+
+        <textarea
+          name="listing[description]"
+          rows="5"
           class="form-control"
+          placeholder="Describe the destination, views, trekking experience, culture, or travel attractions..."
           required
-        />
-      </div>
-      <div class="row">
-        <div class="mb-3 col-md-4">
-          <label class="form-label">Price</label>
-          <input
-            name="listing[price]"
-            class="form-control"
-            placeholder="1500"
-            required
-          />
-          <div class="invalid-feedback">please enter valid price!</div>
-        </div>
-        <div class="mb-3 col-md-8">
-          <label class="form-label">Country</label>
-          <input
-            name="listing[country]"
-            type="text"
-            class="form-control"
-            placeholder="India"
-            required
-          />
-          <div class="invalid-feedback">country name should be valid!</div>
+        ></textarea>
+
+        <div class="invalid-feedback">
+          Please provide destination description.
         </div>
       </div>
+
+      <!-- Image Upload -->
       <div class="mb-3">
-        <label class="form-label">Location</label>
+        <label class="form-label fw-semibold"> Upload Destination Image </label>
+
+        <input type="file" name="image" class="form-control" required />
+      </div>
+
+      <!-- State -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> State </label>
+
         <input
-          name="listing[location]"
           type="text"
+          name="listing[state]"
           class="form-control"
-          placeholder="Enter location"
+          placeholder="Example: Uttarakhand"
           required
         />
-        <div class="invalid-feedback">location should be valid!</div>
       </div>
-      <button type="submit" class="btn btn-dark add-btn mt-3">
-        Add Listing
-      </button>
+
+      <!-- Region -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Region / District </label>
+
+        <input
+          type="text"
+          name="listing[region]"
+          class="form-control"
+          placeholder="Example: Rudraprayag"
+        />
+      </div>
+
+      <!-- Destination Category -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Destination Category </label>
+
+        <select name="listing[category]" class="form-select">
+          <option value="Trekking">Trekking</option>
+
+          <option value="Adventure">Adventure</option>
+
+          <option value="Spiritual">Spiritual</option>
+
+          <option value="Nature">Nature</option>
+
+          <option value="Snow">Snow</option>
+
+          <option value="Camping">Camping</option>
+
+          <option value="Road Trip">Road Trip</option>
+        </select>
+      </div>
+
+      <!-- Best Season -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Best Time To Visit </label>
+
+        <input
+          type="text"
+          name="listing[bestSeason]"
+          class="form-control"
+          placeholder="Example: March to June"
+        />
+      </div>
+
+      <!-- Trek Difficulty -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Trek Difficulty </label>
+
+        <select name="listing[trekDifficulty]" class="form-select">
+          <option value="Easy">Easy</option>
+
+          <option value="Moderate">Moderate</option>
+
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+
+      <!-- Estimated Budget -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">
+          Estimated Travel Budget (₹)
+        </label>
+
+        <input
+          type="number"
+          name="listing[estimatedCost]"
+          class="form-control"
+          placeholder="Example: 5000"
+        />
+      </div>
+
+      <!-- Altitude -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Altitude </label>
+
+        <input
+          type="text"
+          name="listing[altitude]"
+          class="form-control"
+          placeholder="Example: 12073 ft"
+        />
+      </div>
+
+      <!-- Activities -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold"> Activities </label>
+
+        <input
+          type="text"
+          name="listing[activities]"
+          class="form-control"
+          placeholder="Trekking, Camping, Photography"
+        />
+
+        <small class="text-muted">
+          Separate multiple activities using commas.
+        </small>
+      </div>
+
+      <!-- How To Reach -->
+      <div class="mb-4">
+        <label class="form-label fw-semibold"> How To Reach </label>
+
+        <textarea
+          name="listing[howToReach]"
+          rows="4"
+          class="form-control"
+          placeholder="Explain travel routes, nearest railway station, airport, or road access..."
+        ></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button class="btn btn-dark px-4 py-2">Add Destination</button>
+      </div>
     </form>
   </div>
 </div>
-<script>
-  src = "/js/script.js";
-</script>

@@ -1,56 +1,104 @@
+// Import mongoose
 const mongoose = require("mongoose");
+
+// Create schema object
 const Schema = mongoose.Schema;
-const Review = require("./review.js");
-const { string } = require("joi");
-// Define the Listing Schema
-const listingSchema = new Schema({
-  title: {
-    type: String,
-    required: [true, "Title is required"],
-    trim: true,
-  },
-  description: {
-    type: String,
-    trim: true,
-  },
-  image: {
-    url: String,
-    filename: String,
-  },
-  price: {
-    type: Number,
-    required: [true, "Price is required"],
-    min: [0, "Price must be a positive number"],
-  },
-  location: {
-    type: String,
-    trim: true,
-  },
-  country: {
-    type: String,
-    trim: true,
-  },
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
 
-      ref: "Review",
+// Listing schema for travel destinations
+const listingSchema = new Schema(
+  {
+    // Destination title
+    // Example: Tungnath Trek
+    title: {
+      type: String,
+      required: true,
     },
-  ],
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-});
 
-//mongoose middleware
+    // Destination description
+    description: String,
+
+    // Image object stored from Cloudinary
+    image: {
+      url: String,
+      filename: String,
+    },
+
+    // State name
+    // Example: Uttarakhand
+    state: {
+      type: String,
+    },
+
+    // Region or district
+    // Example: Rudraprayag
+    region: {
+      type: String,
+    },
+
+    // Best time to visit
+    // Example: March to June
+    bestSeason: {
+      type: String,
+    },
+
+    // Trek difficulty
+    // Easy / Moderate / Hard
+    trekDifficulty: {
+      type: String,
+    },
+
+    // Approx travel budget
+    // Example: 5000
+    estimatedCost: {
+      type: Number,
+    },
+
+    // Height from sea level
+    // Example: 12073 ft
+    altitude: {
+      type: String,
+    },
+
+    // Activities available
+    // Trekking, Camping etc.
+    activities: [
+      {
+        type: String,
+      },
+    ],
+
+    // How to reach place
+    howToReach: {
+      type: String,
+    },
+
+    // Owner of listing
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+
+    // Reviews
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+  },
+  { timestamps: true },
+);
+
+// Delete reviews automatically if listing is deleted
 listingSchema.post("findOneAndDelete", async (listing) => {
   if (listing) {
-    await Review.deleteMany({ _id: { $in: listing.reviews } });
+    await mongoose.model("Review").deleteMany({
+      _id: { $in: listing.reviews },
+    });
   }
 });
 
-// Create the Listing model
+// Export model
 const Listing = mongoose.model("Listing", listingSchema);
 
 module.exports = Listing;
