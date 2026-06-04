@@ -10,7 +10,7 @@ Here is a look at the system interfaces along with their operational explanation
 
 ### 🏠 1. Home Page Explorer (`home-page.jpg`)
 
-![Home Page](screenshots/home-page.jpg)
+![Home Page](screenshot/home-page.jpg)
 
 - **Explanation:** The landing view showcases travel destination cards (e.g., Tungnath Trek, Munsiyari, Spiti Valley) populated dynamically from MongoDB. It features global context searching by keyword/category and layout headers that conditionally change to show authenticated users (e.g., "Welcome, harsh") along with session controls.
 
@@ -18,7 +18,7 @@ Here is a look at the system interfaces along with their operational explanation
 
 | Create Account                                                        | Welcome Back                                               |
 | --------------------------------------------------------------------- | ---------------------------------------------------------- |
-| ![Sign Up](screenshots/signup.png)                                    | ![Login](screenshots/login.png)                            |
+| ![Sign Up](screenshot/signup.png)                                     | ![Login](screenshot/login.png)                             |
 | _Sign-up portal capturing Username, Email, and Password credentials._ | _Sign-in portal managing local passport-based validation._ |
 
 - **Explanation:** Secure user onboarding and login flows managed via Passport.js local strategy authentication. The views include automated fields to match database schemas, allowing users to safely log in to unleash posting privileges.
@@ -27,22 +27,22 @@ Here is a look at the system interfaces along with their operational explanation
 
 | Header Overview                                          | Structural Metrics                                                          |
 | -------------------------------------------------------- | --------------------------------------------------------------------------- |
-| ![Details Header](screenshots/explore-place.jpg)         | ![Details Metrics](screenshots/explore-place1.png)                          |
+| ![Details Header](screenshot/explore-place.jpg)          | ![Details Metrics](screenshot/explore-place1.png)                           |
 | _Displays destination images and introductory headings._ | _Grid view presenting metadata tracking difficulty, altitude, and budgets._ |
 
 - **Explanation:** When a user selects a destination, the application displays dedicated property views. It renders structural metadata fields from the database layout—including State, Region, Category, Trek Difficulty badges (e.g., Easy), Best Time To Visit, Estimated Budget, and Altitude.
 
 ### ➕ 4. Add Destination Wizard (`add-listing.png`, `add-listing1.png`, `add-listing2.png`)
 
-![Form Section 1](screenshots/add-listing.png)
-![Form Section 2](screenshots/add-listing1.png)
-![Form Section 3](screenshots/add-listing2.png)
+![Form Section 1](screenshot/add-listing.png)
+![Form Section 2](screenshot/add-listing1.png)
+![Form Section 3](screenshot/add-listing2.png)
 
 - **Explanation:** A multi-input multi-part creation form allowing authenticated hosts to submit fresh destinations. Captured schema values include Title, Description, Image files (uploaded to Cloudinary), Category, Best Time to Visit, Difficulty level, Budget, Altitude, Activities tags, and Route guidance.
 
 ### 💬 5. Review Portal (`add-reviews.png`)
 
-![Traveler Reviews](screenshots/add-reviews.png)
+![Traveler Reviews](screenshot/add-reviews.png)
 
 - **Explanation:** An embedded interactive zone utilizing an HTML range slider to collect star ratings (1-5) and specific text area elements for community feedback. It displays previous submissions complete with timestamps and author headers.
 
