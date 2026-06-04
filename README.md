@@ -8,9 +8,9 @@ TravelScape is a full-stack, server-rendered travel platform built on the MVC (M
 
 Here is a look at the system interfaces along with their operational explanations:
 
-### 🏠 1. Home Page Explorer (`home-page.jpg`)
+### 🏠 1. Home Page Explorer (`home-page.png`)
 
-![Home Page](screenshot/home-page.jpg)
+![Home Page](screenshot/home-page.png)
 
 - **Explanation:** The landing view showcases travel destination cards (e.g., Tungnath Trek, Munsiyari, Spiti Valley) populated dynamically from MongoDB. It features global context searching by keyword/category and layout headers that conditionally change to show authenticated users (e.g., "Welcome, harsh") along with session controls.
 
@@ -23,11 +23,11 @@ Here is a look at the system interfaces along with their operational explanation
 
 - **Explanation:** Secure user onboarding and login flows managed via Passport.js local strategy authentication. The views include automated fields to match database schemas, allowing users to safely log in to unleash posting privileges.
 
-### ⛰️ 3. Destination Detailed Views (`explore-place.jpg` & `explore-place1.png`)
+### ⛰️ 3. Destination Detailed Views (`explore-place.png` & `explore-place1.png`)
 
 | Header Overview                                          | Structural Metrics                                                          |
 | -------------------------------------------------------- | --------------------------------------------------------------------------- |
-| ![Details Header](screenshot/explore-place.jpg)          | ![Details Metrics](screenshot/explore-place1.png)                           |
+| ![Details Header](screenshot/explore-place.png)          | ![Details Metrics](screenshot/explore-place1.png)                           |
 | _Displays destination images and introductory headings._ | _Grid view presenting metadata tracking difficulty, altitude, and budgets._ |
 
 - **Explanation:** When a user selects a destination, the application displays dedicated property views. It renders structural metadata fields from the database layout—including State, Region, Category, Trek Difficulty badges (e.g., Easy), Best Time To Visit, Estimated Budget, and Altitude.
