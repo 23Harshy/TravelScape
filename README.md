@@ -62,36 +62,72 @@ Here is a look at the system interfaces along with their operational explanation
 ## 📂 Codebase Directory Layout
 
 TravelScape/
-├── controllers/ # Request handlers isolating business logic from routes
-│ ├── listings.js # Handles logic for creating, viewing, and updating places
-│ ├── reviews.js # Logic for leaving ratings and text reviews
-│ └── users.js # Authentication handlers for login, signup, and logout
-├── init/ # Database initialization and seeding script suite
-│ ├── data.js # Hardcoded mockup listings array array
-│ └── index.js # Execution file to flush and re-seed MongoDB collections
-├── models/ # Mongoose schema definitions defining the data structure
-│ ├── listing.js # Destination schema mapping images, budgets, and reviews
-│ ├── review.js # Schema layout capturing comments and rating ranges
-│ └── user.js # User schema augmented with Passport attributes
-├── public/ # Exposed client assets served statically
-│ ├── css/ # Application stylesheets (style.css, rating.css)
-│ └── js/ # Client-side custom scripts (script.js)
-├── routes/ # Express Router mapping HTTP verbs to controllers
-│ ├── listing.js # Restful routes managing place creations and listing lookups
-│ ├── review.js # Endpoint targets for publishing and deleting reviews[cite: 2]
-│ └── user.js # Authentication gateways[cite: 2]
-├── utils/ # Operational error handlers[cite: 2]
-│ ├── expressError.js # Class builder mapping specialized error exceptions[cite: 2]
-│ └── wrapAsync.js # Wrapper to intercept async exceptions gracefully[cite: 2]
-├── views/ # EJS presentation layout files[cite: 2]
-│ ├── includes/ # Partial UI modules (Navbar, Footer, Alerts)[cite: 2]
-│ ├── layouts/ # System layout core (boilerplate.ejs)[cite: 2]
-│ ├── listings/ # Specific view templates (index, show, new, edit)[cite: 2]
-│ └── users/ # Registration and identity access portals[cite: 2]
-├── app.js # System central bootstrap driver and controller[cite: 2]
-├── cloudConfig.js # Initializer linking Cloudinary credentials[cite: 2]
-├── middleware.js # Access guards verifying identities, owners, and schemas[cite: 2]
-└── schema.js # Sever-side server protection enforcing validation schemas[cite: 2]
+├── controllers/  
+│ ├── listings.js  
+│ ├── reviews.js  
+│ └── users.js  
+│
+├── init/  
+│ ├── data.js  
+│ └── index.js  
+│
+├── models/  
+│ ├── listing.js  
+│ ├── review.js  
+│ └── user.js  
+│
+├── public/  
+│ ├── css/
+│ │ ├── rating.css  
+│ │ └── style.css  
+│ └── js/
+│ └── script.js  
+│
+├── routes/  
+│ ├── listing.js  
+│ ├── review.js  
+│ └── user.js  
+│
+├── utils/  
+│ ├── expressError.js
+│ └── wrapAsync.js  
+│
+├── views/  
+│ ├── includes/  
+│ │ ├── flash.ejs  
+│ │ ├── footer.ejs  
+│ │ └── navbar.ejs  
+│ ├── layouts/
+│ │ └── boilerplate.ejs
+│ ├── listings/
+│ │ ├── edit.ejs  
+│ │ ├── index.ejs  
+│ │ ├── new.ejs  
+│ │ └── show.ejs  
+│ ├── users/
+│ │ ├── login.ejs  
+│ │ └── signup.ejs  
+│ └── error.ejs  
+│
+├── screenshots/  
+│ ├── add-listing.png
+│ ├── add-listing1.png
+│ ├── add-listing2.png
+│ ├── add-reviews.png
+│ ├── explore-place.jpg
+│ ├── explore-place1.png
+│ ├── home-page.jpg
+│ ├── login.png
+│ └── signup.png
+│
+├── app.js  
+├── cloudConfig.js  
+├── middleware.js  
+├── schema.js  
+├── .env  
+├── .gitignore  
+├── package-lock.json  
+└── package.json
 
 ---
 
