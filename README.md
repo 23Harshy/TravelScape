@@ -16,19 +16,23 @@ Here is a look at the system interfaces along with their operational explanation
 
 ### 🔐 2. Access Management (`signup.png` & `login.png`)
 
-| Create Account                                                        | Welcome Back                                               |
-| --------------------------------------------------------------------- | ---------------------------------------------------------- |
-| ![Sign Up](screenshot/signup.png)                                     | ![Login](screenshot/login.png)                             |
-| _Sign-up portal capturing Username, Email, and Password credentials._ | _Sign-in portal managing local passport-based validation._ |
+Create Account  
+![Sign Up](screenshot/signup.png)  
+Sign-up portal capturing Username, Email, and Password credentials.
 
-- **Explanation:** Secure user onboarding and login flows managed via Passport.js local strategy authentication. The views include automated fields to match database schemas, allowing users to safely log in to unleash posting privileges.
+Welcome Back  
+![Login](screenshot/login.png)  
+Sign-in portal managing local passport-based validation.
 
 ### ⛰️ 3. Destination Detailed Views (`explore-place.png` & `explore-place1.png`)
 
-| Header Overview                                          | Structural Metrics                                                          |
-| -------------------------------------------------------- | --------------------------------------------------------------------------- |
-| ![Details Header](screenshot/explore-place.png)          | ![Details Metrics](screenshot/explore-place1.png)                           |
-| _Displays destination images and introductory headings._ | _Grid view presenting metadata tracking difficulty, altitude, and budgets._ |
+ Header Overview                                                                                                    
+ ![Details Header](screenshot/explore-place.png)                                      
+Displays destination images and introductory headings. 
+
+ Structural Metrics
+ ![Details Metrics](screenshot/explore-place1.png)
+  Grid view presenting metadata tracking difficulty, altitude, and budgets.
 
 - **Explanation:** When a user selects a destination, the application displays dedicated property views. It renders structural metadata fields from the database layout—including State, Region, Category, Trek Difficulty badges (e.g., Easy), Best Time To Visit, Estimated Budget, and Altitude.
 
@@ -61,55 +65,57 @@ Here is a look at the system interfaces along with their operational explanation
 
 ## 📂 Codebase Directory Layout
 
+```bash
+
 TravelScape/
-├── controllers/  
-│ ├── listings.js  
-│ ├── reviews.js  
-│ └── users.js  
+├── controllers/
+│ ├── listings.js
+│ ├── reviews.js
+│ └── users.js
 │
-├── init/  
-│ ├── data.js  
-│ └── index.js  
+├── init/
+│ ├── data.js
+│ └── index.js
 │
-├── models/  
-│ ├── listing.js  
-│ ├── review.js  
-│ └── user.js  
+├── models/
+│ ├── listing.js
+│ ├── review.js
+│ └── user.js
 │
-├── public/  
+├── public/
 │ ├── css/
-│ │ ├── rating.css  
-│ │ └── style.css  
+│ │ ├── rating.css
+│ │ └── style.css
 │ └── js/
-│ └── script.js  
+│ └── script.js
 │
-├── routes/  
-│ ├── listing.js  
-│ ├── review.js  
-│ └── user.js  
+├── routes/
+│ ├── listing.js
+│ ├── review.js
+│ └── user.js
 │
-├── utils/  
+├── utils/
 │ ├── expressError.js
-│ └── wrapAsync.js  
+│ └── wrapAsync.js
 │
-├── views/  
-│ ├── includes/  
-│ │ ├── flash.ejs  
-│ │ ├── footer.ejs  
-│ │ └── navbar.ejs  
+├── views/
+│ ├── includes/
+│ │ ├── flash.ejs
+│ │ ├── footer.ejs
+│ │ └── navbar.ejs
 │ ├── layouts/
 │ │ └── boilerplate.ejs
 │ ├── listings/
-│ │ ├── edit.ejs  
-│ │ ├── index.ejs  
-│ │ ├── new.ejs  
-│ │ └── show.ejs  
+│ │ ├── edit.ejs
+│ │ ├── index.ejs
+│ │ ├── new.ejs
+│ │ └── show.ejs
 │ ├── users/
-│ │ ├── login.ejs  
-│ │ └── signup.ejs  
-│ └── error.ejs  
+│ │ ├── login.ejs
+│ │ └── signup.ejs
+│ └── error.ejs
 │
-├── screenshots/  
+├── screenshots/
 │ ├── add-listing.png
 │ ├── add-listing1.png
 │ ├── add-listing2.png
@@ -120,14 +126,16 @@ TravelScape/
 │ ├── login.png
 │ └── signup.png
 │
-├── app.js  
-├── cloudConfig.js  
-├── middleware.js  
-├── schema.js  
-├── .env  
-├── .gitignore  
-├── package-lock.json  
+├── app.js
+├── cloudConfig.js
+├── middleware.js
+├── schema.js
+├── .env
+├── .gitignore
+├── package-lock.json
 └── package.json
+
+```
 
 ---
 
